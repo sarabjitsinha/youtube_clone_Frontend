@@ -43,8 +43,6 @@ function Signin() {
         else if(usercheck.data==='success'){
           setUser(userName)
           setLogin(true)
-          
-          console.log("navigating")
           navigate('/')
         }
         
@@ -57,7 +55,7 @@ userValid();
     <div className={`${theme}`}>
       <Grid2
         sx={{
-          backgroundColor: "lightblue",
+          // backgroundColor: "lightblue",
           height: "100vh",
           position: "relative",
         }}
@@ -65,7 +63,7 @@ userValid();
         <Paper
           elevation={10}
           className="paperStyle"
-          style={{ backgroundColor: "#3ed764", top: "50px", padding: "20px" }}
+          style={{ backgroundColor: "#3ed764", top: "40px", padding: "15px" }}
         >
           <Grid2 align="center">
             <Avatar sx={{ backgroundColor: "blue" }}>
