@@ -18,9 +18,9 @@ import { useContext } from "react"
 
 
 function Sidebar(){
-    const {value}=useContext(Mycontext)
+    const {value,theme}=useContext(Mycontext)
     return(
-        <div className={`sidebar ${value ? "":"small-sidebar"}` }>
+        <div className={`sidebar ${value ? "":"small-sidebar"} ${theme}` }>
             <div className="shortcut-links">
                 <div className="side-link">
                     <img src={home} alt="" /><p>Home</p>
