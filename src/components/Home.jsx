@@ -29,10 +29,10 @@ function Home(){
                     />  */}
                     </div>
                     <div className="w-24 font-light text-sm sm:w-36 sm:font-medium sm:text-lg
-                     md:w-48 md:font-medium md:text-xl xl:w-72 xl:font-medium xl:text-2xl">
+                     md:w-48 md:font-medium md:text-xl xl:w-72 xl:font-medium xl:text-xl">
                         <ul className=" list-none">
                         <li>{video.title}</li>
-                        <li>{video.like}</li>
+                        <li>{Math.floor(Math.random()*(1000-100+1)+100)} {video.like}</li>
                         </ul>
                     </div>
                     
