@@ -1,6 +1,6 @@
 import { Typography,Button,Grid2,Paper,Link,Avatar,TextField } from "@mui/material";
 import "../App.css"
-import { blue, orange, purple } from "@mui/material/colors";
+import { blue,purple } from "@mui/material/colors";
 import HowToRegIcon from '@mui/icons-material/HowToReg';
 import { useState } from "react";
 import axios from "axios";
@@ -98,7 +98,7 @@ function Register(){
     }
     return(
 
-        <Grid2 sx={{bgcolor:orange.A200,height:"100vh"} }>
+        <Grid2 sx={{height:"100vh"} }>
             <Paper elevation={10} className="registerStyle" sx={{bgcolor:purple.A200}}>
         <Grid2 align="center" sx={{padding:2}} >
         <Avatar sx={{bgcolor:blue[900]}}>
