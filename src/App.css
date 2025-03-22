@@ -1,0 +1,30 @@
+.thumbs{
+    border-radius: 15px;
+}
+
+.ifrm {
+    z-index: 1;
+}
+
+.paperStyle{
+    position: relative;
+    top: 15px;
+    height: auto;
+    width: 25vw;
+    margin: auto;
+}
+
+.registerStyle{
+    top: 15px;
+    position: relative;
+    height: 80vh;
+    width: 30vw;
+    margin: auto;
+    padding:20px;
+    }
+
+
+.flex-div{
+    display: flex;
+    align-items: center;
+}
