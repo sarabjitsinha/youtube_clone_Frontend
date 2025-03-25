@@ -27,7 +27,7 @@ const appRouter=createBrowserRouter([{
   },
   {
     path:'/channel',
-    element:<Channel/>
+    element: <Channel/>
   },
   {
     path:'/register',

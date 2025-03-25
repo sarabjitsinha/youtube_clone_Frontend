@@ -10,9 +10,11 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import "../App.css"
 import jsonviddata from "../utils/db.json"
+import axios from "axios";
 
 
 function Header(){
+
     const {value,setvalue,trigvalue,settrigvalue,
         isLoggedin,setLogin,isUser,videodata,setvideodata}=useContext(Mycontext);
     const user=isUser.split(' ')
@@ -23,6 +25,7 @@ function Header(){
     const [search,setsearch]=useState("")
     const nonfilterdata=[...jsonviddata]    
 
+    
     function handleclick(){
         setvalue(!value);
     }
@@ -42,13 +45,23 @@ function Header(){
             }
             else {
         setvideodata(filterdata);
-        console.log(videodata) }
+         }
         }
-           
-
-        useEffect(()=>{
+        
+    useEffect(()=>{
 
         },[videodata])
+
+        function handleChannel(){
+            async function channelData(){
+                const resp=await axios.get('http://127.0.0.1:3000/channel',{withCredentials: true,})
+                if(resp.data==="token received")
+                {
+                    navigate('/channel')
+                }
+            }
+            channelData();
+        }
     
 
     return(
@@ -95,6 +108,8 @@ function Header(){
                     setTimeout(()=>{
                     spanel.remove(); 
                     setLogin(false)
+                    window.localStorage.removeItem('LoggedIn')
+                    window.localStorage.removeItem("User")
                     navigate('/')
                     },3000)
                     return
@@ -112,7 +127,7 @@ function Header(){
 
             </div>
             <Profile trigger={trigvalue}>
-                {isLoggedin && <span onClick={()=>navigate('/channel')} className=" hover:cursor-pointer">Channel</span>}
+                {isLoggedin && <span onClick={handleChannel} className=" hover:cursor-pointer bg-cyan-500 p-1 rounded-md">Channel</span>}
              </Profile>   
         </nav>
     )

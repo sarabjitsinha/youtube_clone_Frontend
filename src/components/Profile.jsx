@@ -41,10 +41,9 @@ function Profile(props){
     return (props.trigger) ?
 
         (<div className= {`right-0 top-12 z-1 absolute bg-white border-stone-400 border-1 flex-col ${props.trigger? theme:null}`} id="popup">
-            <Button variant="contained" color="secondary" sx={{display:"block",maxHeight:"25px"}} size="small"  onClick={handletheme}>
+            <Button variant="contained" color="secondary" sx={{display:"block",maxHeight:"25px",marginBottom:"5px"}} size="small"  onClick={handletheme}>
                 Toggle theme - {theme=='dark' ? "Light":"Dark"}</Button>
-            <label htmlFor="">Preferences</label>
-            <Button variant="contained" color="info" onClick={handleclick} sx={{display:"block",height:"25px"}} size="small">Close</Button>
+            <Button variant="contained" color="info" onClick={handleclick} sx={{display:"block",height:"25px",marginBottom:"5px"}} size="small">Close</Button>
             {props.children}
         </div>
     ) :"";

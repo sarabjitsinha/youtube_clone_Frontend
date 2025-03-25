@@ -2,11 +2,15 @@
 
 import axios from "axios";
 import { useState } from "react";
+import Mycontext from "../utils/Mycontext";
+import { useContext } from "react";
 
 function AddVideo({vidshow,setvid}){
+
 const [title,settitle]=useState('')
 const [category,setcategory]=useState('')
 const [file,setfile]=useState()
+const {isUser}=useContext(Mycontext)
 
 function handlefile(e){
     setfile(e.target.files[0])
@@ -16,7 +20,7 @@ function handlefile(e){
 async function handleSubmit(e){
     e.preventDefault();
     try {
-    const resp=await axios.post("http://127.0.0.1:3000/uploads",{file,title,category},{
+    const resp=await axios.post("http://127.0.0.1:3000/uploads",{file,title,category,username:isUser},{
         headers:{
             'Content-Type':'multipart/form-data'
         }

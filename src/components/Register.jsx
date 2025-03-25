@@ -8,12 +8,13 @@ import { useNavigate } from "react-router-dom";
 import Mycontext from "../utils/Mycontext.js"
 import { useContext } from "react";
 import bcrypt from "bcryptjs"
+import { useEffect } from "react";
 
 
 function Register(){
     const [name,setname]=useState('');
     const [email,setemail]=useState('');
-    const [pswd,setpswd]=useState('');
+    const [password,setpswd]=useState('');
     const [nameflag,setnameflag]=useState(false)
     const [emailFlag,setEmailflag]=useState(false)
     const [pswdflag,setpswdflag]=useState(false)
@@ -21,23 +22,30 @@ function Register(){
     const {setLogin,setUser}=useContext(Mycontext);
     const [hash,sethash]=useState('')
 
+    useEffect(()=>{
+        const saltrounds=10;
+
+            bcrypt.hash(password,saltrounds,(err,hashedPassword)=>{
+                if(err){
+                    console.log("hashing error");
+                    return;
+                }
+                
+                sethash(hashedPassword)
+                
+            })
+
+    },[password])
+
     function handlesubmit(){
             if(((!nameflag) && (!emailFlag) && (!pswdflag))){
                 alert("invalid details")
                 return;
             }
-        const datasubmit=async () => {
-            const saltrounds=10;
 
-            bcrypt.hash(pswd,saltrounds,(err,hashedPassword)=>{
-                if(err){
-                    console.log("hashing error");
-                    return;
-                }
-                sethash(hashedPassword)
-            })
+            const datasubmit=async () => {
 
-            const result=await axios.post('http://127.0.0.1:3000/register',{name,email:email.toUpperCase(),hash})
+            const result=await axios.post('http://127.0.0.1:3000/register',{name,email:email.toUpperCase(),password:hash})
             if(!result.data)
             {
                 console.log("error");
@@ -59,8 +67,8 @@ function Register(){
     function handleName(e){
         const regex=/^[a-zA-Z0-9]{10}$/
         setname(e.target.value)
-        if(name.match(regex)){
-            console.log("register")
+        if(name.match(regex))
+            {
             setnameflag(true)
             return true
         }
@@ -87,7 +95,7 @@ function Register(){
     function handlePswd(e){
         const pregex=/^[a-zA-Z0-9]{8}$/
         setpswd(e.target.value)
-        if(pswd.match(pregex))
+        if(password.match(pregex))
         {
             setpswdflag(true)
             return

@@ -12,35 +12,42 @@ import "../App.css";
 import LockOpenRoundedIcon from "@mui/icons-material/LockOpenRounded";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import {useState } from "react";
+import {useEffect, useState } from "react";
 import Mycontext from "../utils/Mycontext.js"
 import { useContext } from "react";
 
 function Signin() {
+
+  
   const navigate = useNavigate();
   const [userName,setUsername]=useState('');
-  const [psswd,setpsswd]=useState('')
+  const [password,setpsswd]=useState('')
   const [flag,setflag]=useState(false);
-  const {setLogin,setUser,theme}=useContext(Mycontext)
+  const {setLogin,setUser,theme,isLoggedin,isUser}=useContext(Mycontext)
+
+  useEffect(()=>{
+    window.localStorage.setItem("LoggedIn",isLoggedin)
+    window.localStorage.setItem("User",isUser)
+  },[isLoggedin,isUser])
 
     function handleSubmit(){
 
       async function userValid() {
         
-        const usercheck= await axios.post('http://127.0.0.1:3000/signin',{userName,psswd});
-        console.log(usercheck);
+        const usercheck= await axios.post('http://127.0.0.1:3000/signin',{userName,password},{withCredentials:true});
+      
         if(!usercheck.data)
         {
-          console.log('User not registered')
-          return;
+          alert('User not registered')
+           return;
         }
-        if(usercheck.data==='incorrect password')
+        if(usercheck.data==="incorrect password")
         {
-          console.log('incorrect password')
+          alert('incorrect password')
           setflag(true)
           return
         }
-        else if(usercheck.data==='success'){
+        else if(usercheck.data.message==='success'){
           setUser(userName)
           setLogin(true)
           navigate('/')
@@ -55,7 +62,6 @@ userValid();
     <div className={`${theme}`}>
       <Grid2
         sx={{
-          // backgroundColor: "lightblue",
           height: "100vh",
           position: "relative",
         }}
