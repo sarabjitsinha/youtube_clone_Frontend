@@ -16,7 +16,7 @@ function CreateChannel(){
                 navigate('/channel')
     }
     return(
-
+        
     <div>
         <Grid2 height={'90vh'} width={"100vw"} color={'darkolivegreen'}> 
             <Paper elevation={10} sx={{height:"100%",width:"90%",margin:"auto",backgroundColor:"lightpink"}} >

@@ -1,15 +1,26 @@
 import { Typography,Avatar } from "@mui/material"
 import AddVideo from "./AddVideo"
 import { Link } from "react-router-dom"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Home from "./Home"
+import axios from "axios"
 // import vid1 from "../../uploads/file-1742222100351-.mp4"
 
 
 export default function Channel(){
 
+    const [uservideo,setuservideo]=useState([])
     const loginCheck=window.localStorage.getItem('LoggedIn')
-    
+
+    async function channelVideo(){
+
+        const resp= await axios.get('http://127.0.0.1:3000/channelvideo')
+        setuservideo(prev=>[...prev,resp])
+    }
+
+    useEffect(()=>{
+     channelVideo()
+    },[])
 
     const [vidbarshow,setvidbarshow]=useState(false)
 
@@ -47,9 +58,15 @@ export default function Channel(){
             </div>
             
                 <p className="p-3">Your channel videos will appear here</p>
-                <div className="flex p-5 gap-2">   
-               <video src=""
+                <div className="flex p-5 gap-2">  
+                    { uservideo.map((video,index)=>{
+                        return(
+                            <div key={index}>
+               <video src={video}
                controls autoPlay height={"150px"} width={"300px"}></video>
+               </div>
+               )
+            })}
             </div>
         </div>:<Home/>
     )

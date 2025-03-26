@@ -1,4 +1,4 @@
-import logo from "../assets/logo.jpg"
+// import logo from "../assets/logo.jpg"
 import Mycontext from "../utils/Mycontext"
 import { useContext,useState,useEffect} from "react";
 import Profile from "./Profile"
@@ -11,7 +11,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import "../App.css"
 import jsonviddata from "../utils/db.json"
 import axios from "axios";
-
+import YouTubeIcon from '@mui/icons-material/YouTube';
 
 function Header(){
 
@@ -69,13 +69,15 @@ function Header(){
              <div className="flex ">
         
                <MenuIcon fontSize={dim ? dim1? "large":"medium" :"small"} onClick={handleclick} sx={{alignSelf:"center"}}/>
-                <img src={logo} alt=""   onClick={()=>{navigate('/'); setvideodata(nonfilterdata)}} />   
+                {/* <img src={logo} alt=""   onClick={()=>{navigate('/'); setvideodata(nonfilterdata)}} />    */}
                 
+                <YouTubeIcon color="error" fontSize={dim ? dim1? "large":"medium" :"small"} 
+                onClick={()=>{navigate('/'); setvideodata(nonfilterdata)}} />
              </div>   
             
             <div className="flex border-[1px] bg-transparent rounded-full mid-head flex-div ">
             <input type="text" name="search" id="searchBox" 
-             className="w-18 h-5 rounded-4xl outline-none border-0 flex pl-2 sm:h-6 sm:w-24 md:w-64 md:h-8 lg:h-8 xl:h-10"
+             className="w-18 h-5 rounded-4xl outline-none border-0 flex pl-2 sm:h-6 sm:w-24 md:w-64 md:h-8 lg:h-8 lg:w-80 xl:h-10"
               onChange={(e)=>setsearch(e.target.value)}/>
              <SearchIcon fontSize={dim ? dim1? "large":"medium" :"small"} onClick={(e)=>handleSearch(e)}/>
             </div>

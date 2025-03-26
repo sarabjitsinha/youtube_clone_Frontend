@@ -20,6 +20,8 @@ function VideoPlay(){
 
     function Handleclick(comment){
    setcommentArray((prev)=>[...prev,comment])
+   const el=document.getElementById("commentsentry")
+   el.value=""
     }
     return(
         <div >
@@ -28,8 +30,8 @@ function VideoPlay(){
             <section className="h-[40%] w-[55%] ml-[8%] mt-2 ">
                 <video src={videoWatch.sources} autoPlay allowfullscreen controls className=" rounded-2xl" ></video>
                     <br />
-                <h2 className=" font-bold text-xl">Title</h2>
-                <div className=" font-semibold text-lg">{videoWatch.description}</div>
+                <h2 className=" font-bold text-md mb-2">Title</h2>
+                <div className=" font-semibold text-sm">{videoWatch.description}</div>
                 <br />
                 <div className=" font-bold text-xl">{commentArray.length} comments</div>
                 <br />
@@ -42,7 +44,7 @@ function VideoPlay(){
                         </div>)
                     })}
                     <label htmlFor="commentsentry" className=" block">Leave comments</label>
-                    <textarea name="" id="commentsentry" onKeyUp={(e)=>setcomment(e.target.value)}
+                    <textarea name="" id="commentsentry" onChange={(e)=>setcomment(e.target.value)}
                      className="block border-[1px] border-black"></textarea>
                     <button type="submit" onClick={()=>Handleclick(comment)}
                         className=" bg-slate-400 rounded-3xl p-1 hover:cursor-pointer mt-1"
