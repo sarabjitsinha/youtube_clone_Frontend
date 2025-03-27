@@ -19,7 +19,7 @@ function Register(){
     const [emailFlag,setEmailflag]=useState(false)
     const [pswdflag,setpswdflag]=useState(false)
     const navigate=useNavigate()
-    const {setLogin,setUser}=useContext(Mycontext);
+    const {setLogin,setUser,isLoggedin}=useContext(Mycontext);
     const [hash,sethash]=useState('')
 
     useEffect(()=>{
@@ -53,7 +53,10 @@ function Register(){
              }
              if(result.data==="success"){
                     setLogin(true);
-                    setUser(name)
+                    window.localStorage.setItem("User",name)
+                    const newUserName=window.localStorage.getItem("User",name)
+    
+                    setUser(newUserName)
                     navigate('/')                
              } 
              else if(result.data==="fail")

@@ -16,7 +16,7 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
 function Header(){
 
     const {value,setvalue,trigvalue,settrigvalue,
-        isLoggedin,setLogin,isUser,videodata,setvideodata}=useContext(Mycontext);
+        isLoggedin,setLogin,isUser,videodata,setvideodata,setUser}=useContext(Mycontext);
     const user=isUser.split(' ')
     const loguser=user[0][0]
     const navigate=useNavigate();
@@ -24,8 +24,9 @@ function Header(){
     const dim1=useMediaQuery('(min-width:620px)')
     const [search,setsearch]=useState("")
     const nonfilterdata=[...jsonviddata]    
-
-    
+    const loggeduser=window.localStorage.getItem("User")
+    const userloged=loggeduser && loggeduser[0] 
+      
     function handleclick(){
         setvalue(!value);
     }
@@ -50,8 +51,9 @@ function Header(){
         
     useEffect(()=>{
 
-        },[videodata])
-
+        },[videodata,isLoggedin,isUser])
+console.log(isLoggedin)
+console.log(isUser)
         function handleChannel(){
             async function channelData(){
                 const resp=await axios.get('http://127.0.0.1:3000/channel',{withCredentials: true,})
@@ -98,18 +100,22 @@ function Header(){
                     const spanel=document.createElement('div')
                      const bodyEl=document.querySelector('body') 
                     spanel.style.cssText= `
-                     background-color: blue;
+                     background-color: lightblue;
                      top: 5px;
                      right: 0px;
-                     height:38px;
+                     height:40px;
                      width:170px;
                      position:absolute;
+                     border-radius:25px;
+                     text-align:center;
+                     align-items:center
                      `
                      bodyEl.appendChild(spanel)  
                      spanel.innerHTML="Logging out..."
                     setTimeout(()=>{
                     spanel.remove(); 
                     setLogin(false)
+                       
                     window.localStorage.removeItem('LoggedIn')
                     window.localStorage.removeItem("User")
                     navigate('/')
@@ -122,7 +128,7 @@ function Header(){
              }>{isLoggedin ? 'Logout':'Sign in'}</Button> 
             </Stack>
                 {isLoggedin ? 
-                <Avatar sx={{bgcolor:"blue",}} onClick={profileclick} >{loguser}</Avatar>
+                <Avatar sx={{bgcolor:"blue",}} onClick={profileclick} >{userloged}</Avatar>
                 :<AccountCircleIcon fontSize={dim ? dim1? "large":"medium" :"small"}
                  color={isLoggedin ? 'success':'info'} onClick={profileclick}/>
                 }

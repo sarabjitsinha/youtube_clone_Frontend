@@ -4,18 +4,17 @@ import { Link } from "react-router-dom"
 import { useEffect, useState } from "react"
 import Home from "./Home"
 import axios from "axios"
-// import vid1 from "../../uploads/file-1742222100351-.mp4"
-
 
 export default function Channel(){
 
     const [uservideo,setuservideo]=useState([])
     const loginCheck=window.localStorage.getItem('LoggedIn')
-
+    
     async function channelVideo(){
-
-        const resp= await axios.get('http://127.0.0.1:3000/channelvideo')
-        setuservideo(prev=>[...prev,resp])
+        const resp= await axios.get('http://127.0.0.1:3000/channelvideo',
+            {headers:{'x-username':window.localStorage.getItem("User")},withCredentials:true},
+        )
+        setuservideo(resp.data)
     }
 
     useEffect(()=>{
@@ -63,7 +62,7 @@ export default function Channel(){
                         return(
                             <div key={index}>
                <video src={video}
-               controls autoPlay height={"150px"} width={"300px"}></video>
+               controls  height={"150px"} width={"300px"}></video>
                </div>
                )
             })}

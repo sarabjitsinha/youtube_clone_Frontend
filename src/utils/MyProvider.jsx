@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import Mycontext from "./Mycontext.js";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import playdata from "../utils/db.json"
 
 
@@ -10,9 +10,21 @@ const MyProvider = ({ children }) => {
   const [theme, settheme] = useState("light");
   const [channelPopup, setchannelPopup] = useState(false);
   const [isUser, setUser] = useState('');
-  const [isLoggedin, setLogin] = useState(false);
-  const [videodata,setvideodata]=useState(playdata)
-  
+  const [isLoggedin, setLogin] = useState();
+  const [videodata,setvideodata]=useState(playdata);
+
+  const loggedInUser = window.localStorage.getItem('LoggedIn');
+console.log(loggedInUser)
+
+  useEffect(() => {
+    if(loggedInUser)
+    {
+      setLogin(true);
+    }else{
+      setLogin(false)
+    }
+  },[loggedInUser])
+
   return (
     <Mycontext.Provider
       value={{

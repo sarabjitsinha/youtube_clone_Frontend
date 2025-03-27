@@ -25,16 +25,19 @@ function Signin() {
   const [flag,setflag]=useState(false);
   const {setLogin,setUser,theme,isLoggedin,isUser}=useContext(Mycontext)
 
-  useEffect(()=>{
+
+ 
+  useEffect(()=>{ 
     window.localStorage.setItem("LoggedIn",isLoggedin)
-    window.localStorage.setItem("User",isUser)
+    // window.localStorage.setItem("User",isUser)
+    
   },[isLoggedin,isUser])
 
     function handleSubmit(){
 
       async function userValid() {
         
-        const usercheck= await axios.post('http://127.0.0.1:3000/signin',{userName,password},{withCredentials:true});
+        const usercheck= await axios.post('http://127.0.0.1:3000/signin',{userName,password});
       
         if(!usercheck.data)
         {
@@ -50,6 +53,7 @@ function Signin() {
         else if(usercheck.data.message==='success'){
           setUser(userName)
           setLogin(true)
+          window.localStorage.setItem("User",userName)
           navigate('/')
         }
         

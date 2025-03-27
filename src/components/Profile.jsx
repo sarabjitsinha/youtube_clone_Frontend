@@ -5,26 +5,20 @@ import { useContext } from "react";
 
 
 function Profile(props){
+    
     const {settrigvalue,theme,settheme}=useContext(Mycontext);
-    // const divEl=document.querySelector('#popup');
-    // props.trigger &&
-    // divEl.classList.add('dark')
     
-    
-
     function handleclick(){
         settrigvalue(false)
     }
 
     function handletheme(){
         const bodyEl=document.querySelector('body')
-        // const divEl=document.querySelector('#popup');
-
+        
         if(bodyEl.classList.contains('dark'))
         {  
 
             bodyEl.classList.remove('dark')
-            // divEl.classList.remove('dark')
             settheme("light");
             return
         }
@@ -32,8 +26,7 @@ function Profile(props){
         {
             
             bodyEl.classList.add('dark')
-            // divEl.classList.add('dark')
-            settheme('dark')
+             settheme('dark')
         }
         
     }
