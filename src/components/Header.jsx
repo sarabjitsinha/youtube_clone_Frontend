@@ -16,9 +16,9 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
 function Header(){
 
     const {value,setvalue,trigvalue,settrigvalue,
-        isLoggedin,setLogin,isUser,videodata,setvideodata,setUser}=useContext(Mycontext);
-    const user=isUser.split(' ')
-    const loguser=user[0][0]
+        isLoggedin,setLogin,isUser,videodata,setvideodata}=useContext(Mycontext);
+    // const user=isUser.split(' ')
+    // const loguser=user[0][0]
     const navigate=useNavigate();
     const dim=useMediaQuery('(min-width:400px)')
     const dim1=useMediaQuery('(min-width:620px)')
@@ -26,6 +26,7 @@ function Header(){
     const nonfilterdata=[...jsonviddata]    
     const loggeduser=window.localStorage.getItem("User")
     const userloged=loggeduser && loggeduser[0] 
+    
       
     function handleclick(){
         setvalue(!value);
@@ -52,13 +53,15 @@ function Header(){
     useEffect(()=>{
 
         },[videodata,isLoggedin,isUser])
-console.log(isLoggedin)
-console.log(isUser)
+
         function handleChannel(){
             async function channelData(){
-                const resp=await axios.get('http://127.0.0.1:3000/channel',{withCredentials: true,})
-                if(resp.data==="token received")
+                const resp=await axios.get('http://127.0.0.1:3000/channel',
+                    {withCredentials: true})
+                console.log(resp)
+                if(resp.data.message==="token received")
                 {
+                    
                     navigate('/channel')
                 }
             }

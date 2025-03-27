@@ -2,19 +2,19 @@
 
 import axios from "axios";
 import { useState } from "react";
-
+import Mycontext from "../utils/Mycontext";
+import { useContext } from "react";
 
 function AddVideo({vidshow,setvid}){
 
 const [title,settitle]=useState('')
 const [category,setcategory]=useState('')
 const [file,setfile]=useState()
-
+const {setVideoadd}=useContext(Mycontext)
 
 function handlefile(e){
     setfile(e.target.files[0])
 }
-
 
 async function handleSubmit(e){
     e.preventDefault();
@@ -26,6 +26,7 @@ async function handleSubmit(e){
         },
         
     })
+    setVideoadd(true)
     alert(resp.data)
     }
     catch (err){
@@ -40,17 +41,23 @@ async function handleSubmit(e){
         <div className="text-white w-[600px] 
         h-[400px] bg-slate-600 top-[17%] left-[25%] z-2 absolute flex flex-col justify-around items-center">
                 <div>
-                    <label htmlFor="title">Enter title</label>
-                    <br />
+                    <label htmlFor="title">Enter title &nbsp;</label>
+                    
                     <input type="text" name="title" id="title" className="border-2 border-black" 
                     onChange={(e)=>settitle(e.target.value)} />
                     
                 </div>
 
                 <div>
-                    <label htmlFor="category">Enter the category</label>
-                    <input type="text" name="category" id="category" className=" border-2 border-black block" 
-                    onChange={(e)=>setcategory(e.target.value)}/>
+                    <label htmlFor="category">Enter the category &nbsp;</label>
+                    <select name="catgory" id="category" className=" bg-slate-600" onChange={(e)=>setcategory(e.target.value)}>
+                        <option value="politics">Politics</option>
+                        <option value="javascript">Javascript</option>
+                        <option value="music">Music</option>
+                        <option value="technology">Technology</option>
+                        <option value="nodejs">Nodejs</option>
+                    </select>
+                    
                 </div>
                                     
                 <input type="file" name='file' className="border-2 border-black hover:cursor-pointer block " 

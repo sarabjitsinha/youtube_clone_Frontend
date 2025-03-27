@@ -12,12 +12,14 @@ const MyProvider = ({ children }) => {
   const [isUser, setUser] = useState('');
   const [isLoggedin, setLogin] = useState();
   const [videodata,setvideodata]=useState(playdata);
+  const [videoAdd,setVideoadd]=useState(false)
+  const [chnlName,setchnlName]=useState("")
 
   const loggedInUser = window.localStorage.getItem('LoggedIn');
-console.log(loggedInUser)
+
 
   useEffect(() => {
-    if(loggedInUser)
+    if(loggedInUser==='true')
     {
       setLogin(true);
     }else{
@@ -41,7 +43,11 @@ console.log(loggedInUser)
         isLoggedin,
         setLogin,
         videodata,
-        setvideodata
+        setvideodata,
+        videoAdd,
+        setVideoadd,
+        chnlName,
+        setchnlName
       }}
     >
       {children}

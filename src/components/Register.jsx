@@ -37,6 +37,7 @@ function Register(){
 
     },[password])
 
+
     function handlesubmit(){
             if(((!nameflag) && (!emailFlag) && (!pswdflag))){
                 alert("invalid details")
@@ -51,11 +52,16 @@ function Register(){
                 console.log("error");
                 return
              }
+             if(result.data==="User exists")
+             {
+                alert("User already registered.Please login");
+                return
+             }
              if(result.data==="success"){
                     setLogin(true);
                     window.localStorage.setItem("User",name)
                     const newUserName=window.localStorage.getItem("User",name)
-    
+                    window.localStorage.setItem('LoggedIn',isLoggedin)
                     setUser(newUserName)
                     navigate('/')                
              } 

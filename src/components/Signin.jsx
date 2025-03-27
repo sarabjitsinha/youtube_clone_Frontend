@@ -17,10 +17,9 @@ import Mycontext from "../utils/Mycontext.js"
 import { useContext } from "react";
 
 function Signin() {
-
   
   const navigate = useNavigate();
-  const [userName,setUsername]=useState('');
+  const [userEmail,setUserEmail]=useState('');
   const [password,setpsswd]=useState('')
   const [flag,setflag]=useState(false);
   const {setLogin,setUser,theme,isLoggedin,isUser}=useContext(Mycontext)
@@ -28,16 +27,14 @@ function Signin() {
 
  
   useEffect(()=>{ 
-    window.localStorage.setItem("LoggedIn",isLoggedin)
-    // window.localStorage.setItem("User",isUser)
-    
+        
   },[isLoggedin,isUser])
 
     function handleSubmit(){
 
       async function userValid() {
         
-        const usercheck= await axios.post('http://127.0.0.1:3000/signin',{userName,password});
+        const usercheck= await axios.post('http://127.0.0.1:3000/signin',{userEmail,password},{withCredentials:true});
       
         if(!usercheck.data)
         {
@@ -51,9 +48,10 @@ function Signin() {
           return
         }
         else if(usercheck.data.message==='success'){
-          setUser(userName)
+          setUser(userEmail)
           setLogin(true)
-          window.localStorage.setItem("User",userName)
+          window.localStorage.setItem("User",userEmail)
+          window.localStorage.setItem("LoggedIn","true")
           navigate('/')
         }
         
@@ -83,13 +81,14 @@ userValid();
             <Typography variant="h4"> Sign In</Typography>
           </Grid2>
           <TextField
-            label="Username"
+            label="Email"
             variant="standard"
             required
+            type="email"
             fullWidth
             placeholder="Enter username"
             autoComplete="off"
-            onChange={(e)=>setUsername(e.target.value)}
+            onChange={(e)=>setUserEmail(e.target.value)}
           ></TextField>
           <TextField
             label="Password"
