@@ -51,7 +51,8 @@ async function handleSubmit(e){
                 <div>
                     <label htmlFor="category">Enter the category &nbsp;</label>
                     <select name="catgory" id="category" className=" bg-slate-600" onChange={(e)=>setcategory(e.target.value)}>
-                        <option  defaultValue="politics">Politics</option>
+                       <option value="">Select</option>
+                        <option  value="politics">Politics</option>
                         <option value="javascript">Javascript</option>
                         <option value="music">Music</option>
                         <option value="technology">Technology</option>

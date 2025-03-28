@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Typography,Avatar } from "@mui/material"
 import AddVideo from "./AddVideo"
 import { Link } from "react-router-dom"
