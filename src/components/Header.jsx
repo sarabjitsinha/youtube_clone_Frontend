@@ -16,7 +16,7 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
 function Header(){
 
     const {value,setvalue,trigvalue,settrigvalue,
-        isLoggedin,setLogin,isUser,videodata,setvideodata}=useContext(Mycontext);
+     isLoggedin,setLogin,isUser,videodata,setvideodata,setchnlName}=useContext(Mycontext);
     // const user=isUser.split(' ')
     // const loguser=user[0][0]
     const navigate=useNavigate();
@@ -58,8 +58,13 @@ function Header(){
             async function channelData(){
                 const resp=await axios.get('http://127.0.0.1:3000/channel',
                     {withCredentials: true})
-                console.log(resp)
-                if(resp.data.message==="token received")
+
+                    if(resp.data=="unauthorized token"){
+                        alert("Session Expired. Login again")
+                        // window.localStorage.clear();
+                        return
+                    }
+                if(resp.data==="token received")
                 {
                     
                     navigate('/channel')
@@ -118,7 +123,7 @@ function Header(){
                     setTimeout(()=>{
                     spanel.remove(); 
                     setLogin(false)
-                       
+                     setchnlName(" ")  
                     window.localStorage.removeItem('LoggedIn')
                     window.localStorage.removeItem("User")
                     navigate('/')

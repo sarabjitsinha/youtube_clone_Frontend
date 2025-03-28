@@ -2,34 +2,54 @@ import { Typography,Avatar } from "@mui/material"
 import AddVideo from "./AddVideo"
 import { Link } from "react-router-dom"
 import { useEffect, useState } from "react"
-import Home from "./Home"
+import Home from "../Home"
 import axios from "axios"
-import Mycontext from "../utils/Mycontext"
+import Mycontext from "../../utils/Mycontext"
 import { useContext } from "react"
 
 export default function Channel(){
-    const {videoAdd,chnlName}=useContext(Mycontext)
+    const {videoAdd,chnlName,setchnlName}=useContext(Mycontext)
     const [uservideo,setuservideo]=useState([])
     const [channelFlag,setchannelFlag]=useState(false)
     const loginCheck=window.localStorage.getItem('LoggedIn')
+    const [vidbarshow,setvidbarshow]=useState(false)
+    const [promisecheck,setpromisecheck]=useState(true)
 
-    
     async function channelVideo(){
+        setchnlName("")
         const resp= await axios.get('http://127.0.0.1:3000/channelvideo',
             {headers:{'x-username':window.localStorage.getItem("User")},withCredentials:true}
         )
+        
+        if(!chnlName){
+            setpromisecheck(false)
+        }
         setuservideo(resp.data)
         
         if(resp.data.length>0){
             setchannelFlag(true)
         }
+        else if(chnlName){
+            setchannelFlag(true)
+            setpromisecheck(true)
+        }
+    }
+    
+    async function getChannelName() {
+        const resp=await axios.get("http://127.0.0.1:3000/channelname",{headers:{"x-username":window.localStorage.getItem("User")},withCredentials:true})
+        if(resp.data)
+        setchnlName(resp.data)
+        else
+        setchnlName("")
     }
 
+
     useEffect(()=>{
-     channelVideo()
+     channelVideo();
+     getChannelName();
     },[videoAdd])
 
-    const [vidbarshow,setvidbarshow]=useState(false)
+    
 
     return ((loginCheck)?
 
@@ -37,8 +57,10 @@ export default function Channel(){
             
         <div className=" flex justify-between">
             <div className=" flex flex-col">
+                
             <Typography variant="subtitle1" >
-           <Link to='/createchannel'>{channelFlag ? `Your channel ${chnlName}`:"Create Channel"}</Link>
+           <Link to='/createchannel'  >
+           {channelFlag  ? `Your channel ->${chnlName ? chnlName:"Loading..."}`:`${promisecheck ?"Loading":"Create Channel"}`}</Link>
             </Typography>
             
             <div onClick={()=>setvidbarshow(true)} className=" cursor-pointer" > 

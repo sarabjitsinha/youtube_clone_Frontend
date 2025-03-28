@@ -5,16 +5,23 @@ import { useContext, useState } from "react";
 import axios from "axios";
 
 function CreateChannel(){
-    const {isUser}=useContext(Mycontext)
+    const {setUserChannelCreate}=useContext(Mycontext)
     const [channelCreate,setChannelcreate]=useState("")
     const navigate=useNavigate()
+    const userEmail=window.localStorage.getItem("User")
 
    async function handleChannel(){
         const resp= await axios.post('http://127.0.0.1:3000/addchannel',
-            {username:isUser,channelname:channelCreate},{withCredentials:true})
+            {username:userEmail,channelname:channelCreate},{withCredentials:true})
             if(resp.data=="success")
-                navigate('/channel')
+            {
+                setUserChannelCreate(true)
+                alert("channel created successfully")
+                 navigate('/')
+                // window.location.href='/channel'
+            }   
     }
+
     return(
         
     <div>
@@ -30,7 +37,7 @@ function CreateChannel(){
                     <Stack gap={2} width={"90%"} margin={"auto"}>
                         <label htmlFor="Name" >Name</label>
                         <TextField label="Name" required variant="standard" 
-                        className=" font-semibold" data-dataid="1" value={isUser} disabled />
+                        className=" font-semibold" data-dataid="1" value={userEmail} disabled />
                     </Stack>
                     <Stack gap={2} width={"90%"} margin={"auto"}>
                         <label htmlFor="" className="">Channel Name</label>

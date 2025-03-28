@@ -1,10 +1,10 @@
+# Running the App
 
+Clone both frontend and Backend.  
 
-# Bugs
-Video frame width not increased with hide menu.  
+Run command npm install for both frontend and backend.  
 
-Check Testvideo component (files not uploading in optimized way).  
+Run command npm start for Backend.  
 
-youtube embedded iframe not supporting onClick event handlers. *** video tag to be replaced with iframe for testing.  
+Run command npm run dev for frontend to run the frontend in devlopment mode.
 
-Routing issue in comments.

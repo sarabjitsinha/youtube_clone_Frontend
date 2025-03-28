@@ -14,7 +14,8 @@ const MyProvider = ({ children }) => {
   const [videodata,setvideodata]=useState(playdata);
   const [videoAdd,setVideoadd]=useState(false)
   const [chnlName,setchnlName]=useState("")
-
+  const [userChannelCreate,setUserChannelCreate]=useState(false)
+  
   const loggedInUser = window.localStorage.getItem('LoggedIn');
 
 
@@ -47,7 +48,10 @@ const MyProvider = ({ children }) => {
         videoAdd,
         setVideoadd,
         chnlName,
-        setchnlName
+        setchnlName,
+        userChannelCreate,
+        setUserChannelCreate
+        
       }}
     >
       {children}

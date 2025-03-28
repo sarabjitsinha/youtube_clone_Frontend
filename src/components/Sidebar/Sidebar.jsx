@@ -8,14 +8,12 @@ import tech from "../../assets/tech.png"
 import music from "../../assets/music.png"
 import blogs from "../../assets/blogs.png"
 import news from "../../assets/news.png"
-import jack from "../../assets/jack.png"
-import simon from  "../../assets/simon.png"
 import tom from "../../assets/tom.png"
 import megan from "../../assets/megan.png"
 import cameron from "../../assets/cameron.png"
 import Mycontext from "../../utils/Mycontext"
 import { useContext } from "react"
-
+import user from "../../assets/user.jpeg"
 
 function Sidebar(){
     const {value,theme}=useContext(Mycontext)
@@ -55,10 +53,10 @@ function Sidebar(){
         <div className="subscribed-list">
             <h3>Subscribed</h3>
             <div className="side-link">
-                <img src={jack} alt="" /><p>javascript</p>
+                <img src={user} alt="" /><p>javascript</p>
               </div>  
               <div className="side-link">
-                <img src={simon} alt="" /><p>html</p>
+                <img src={user} alt="" /><p>html</p>
                 </div>
                 <div className="side-link">
                 <img src={tom} alt="" /> <p>machhine learning</p>
