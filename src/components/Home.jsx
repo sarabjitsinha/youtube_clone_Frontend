@@ -35,22 +35,22 @@ function Home(){
         return(
 
             <div onClick={(e)=>handleSearch(e)} className="p-2">
-<div className=" flex justify-center gap-3 mb-2">                
-<span className="bg-blue-100 text-blue-800 text-xs sm:text-sm md:text-lg font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-blue-900 dark:text-blue-300 hover:cursor-pointer">Politics</span>
-<span className="bg-gray-100 text-gray-800 text-xs sm:text-sm md:text-lg font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-gray-700 dark:text-gray-300 hover:cursor-pointer">Javascript</span>
-<span className="bg-red-100 text-red-800 text-xs sm:text-sm md:text-lg font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-red-900 dark:text-red-300 hover:cursor-pointer">Python</span>
-<span className="bg-green-100 text-green-800 text-xs sm:text-sm md:text-lg font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-green-900 dark:text-green-300 hover:cursor-pointer">Music</span>
-<span className="bg-yellow-100 text-yellow-800 text-xs sm:text-sm md:text-lg font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-yellow-900 dark:text-yellow-300 hover:cursor-pointer">Technology</span>
-<span className="bg-indigo-100 text-indigo-800 text-xs sm:text-sm md:text-lg font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-indigo-900 dark:text-indigo-300 hover:cursor-pointer">NodeJs</span>
+<div className=" flex justify-center mb-2">                
+<span className="bg-blue-100 text-blue-800 text-xs sm:text-sm md:text-sm font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-blue-900 dark:text-blue-300 hover:cursor-pointer">Politics</span>
+<span className="bg-gray-100 text-gray-800 text-xs sm:text-sm md:text-sm font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-gray-700 dark:text-gray-300 hover:cursor-pointer">Javascript</span>
+<span className="bg-red-100 text-red-800 text-xs sm:text-sm md:text-sm font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-red-900 dark:text-red-300 hover:cursor-pointer">Python</span>
+<span className="bg-green-100 text-green-800 text-xs hidden sm:inline sm:text-sm md:text-sm font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-green-900 dark:text-green-300 hover:cursor-pointer">Music</span>
+<span className="bg-yellow-100 text-yellow-800 text-xs hidden sm:inline sm:text-sm md:text-sm font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-yellow-900 dark:text-yellow-300 hover:cursor-pointer">Technology</span>
+<span className="bg-indigo-100 text-indigo-800 text-xs hidden sm:inline sm:text-sm md:text-sm font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-indigo-900 dark:text-indigo-300 hover:cursor-pointer">NodeJs</span>
 </div>
         <div className="flex flex-wrap gap-6 pl-10 w-auto ">
             
             {videodata.map((video)=>{
                 return(
-                    <div key={video.title} className="flex flex-col  h-32 sm:mb-10 sm:h-52 md:h-72 md:mb-3 xl:h-72"  >
+                    <div key={video.title} className="flex flex-col h-32 sm:mb-10 sm:h-52 md:h-72 md:mb-3 xl:h-72"  >
                     <div className="flex">
                      <img src={video.thumb} alt="thumb" 
-                      className={`thumbs ${value? "w-40 h-20 sm:w-54 sm:h-42 md:w-60 md:h-48 lg:w-72 xl:w-86 xl:h-52"
+                      className={`thumbs ${value? "w-40 h-18 sm:w-54 sm:h-42 md:w-60 md:h-48 lg:w-72 xl:w-86 xl:h-52"
                         :"w-48 h-20 sm:w-60 sm:h-40 md:w-72 md:h-48 xl:w-96 xl:m-2 xl:h-52"}`}
                        onClick={()=>handlevid(video.id)} />   
                              </div>

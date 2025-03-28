@@ -79,14 +79,13 @@ function Header(){
              <div className="flex ">
         
                <MenuIcon fontSize={dim ? dim1? "large":"medium" :"small"} onClick={handleclick} sx={{alignSelf:"center"}}/>
-                {/* <img src={logo} alt=""   onClick={()=>{navigate('/'); setvideodata(nonfilterdata)}} />    */}
-                
+                                
                 <YouTubeIcon color="error" fontSize={dim ? dim1? "large":"medium" :"small"} 
                 onClick={()=>{navigate('/'); setvideodata(nonfilterdata)}} />
              </div>   
             
             <div className="flex border-[1px] bg-transparent rounded-full mid-head flex-div ">
-            <input type="text" name="search" id="searchBox" 
+            <input type="text" name="search" id="searchBox" autoComplete="off"
              className="w-18 h-5 rounded-4xl outline-none border-0 flex pl-2 sm:h-6 sm:w-24 md:w-64 md:h-8 lg:h-8 lg:w-80 xl:h-10"
               onChange={(e)=>setsearch(e.target.value)}/>
              <SearchIcon fontSize={dim ? dim1? "large":"medium" :"small"} onClick={(e)=>handleSearch(e)}/>
