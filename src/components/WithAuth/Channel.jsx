@@ -7,6 +7,7 @@ import Home from "../Home"
 import axios from "axios"
 import Mycontext from "../../utils/Mycontext"
 import { useContext } from "react"
+import { useNavigate } from "react-router-dom"
 
 export default function Channel(){
     const {videoAdd,chnlName,setchnlName}=useContext(Mycontext)
@@ -15,6 +16,7 @@ export default function Channel(){
     const loginCheck=window.localStorage.getItem('LoggedIn')
     const [vidbarshow,setvidbarshow]=useState(false)
     const [promisecheck,setpromisecheck]=useState(true)
+    const navigate=useNavigate()
 
     async function channelVideo(){
         setchnlName("")
@@ -50,6 +52,21 @@ export default function Channel(){
      getChannelName();
     },[videoAdd])
 
+    async function handleVideoDelete(target) {
+        const resp=await axios.delete("http://127.0.0.1:3000/delete",{
+            headers:{"x-username":window.localStorage.getItem("User"),"x-url":target}});
+            console.log(resp)
+            if(resp.data=="success")
+            {
+                alert("Video successfully deleted")
+                navigate('/')
+            }
+            if(resp.data=="error")
+            {
+                alert("error")
+            }
+        
+    }
     
 
     return ((loginCheck)?
@@ -94,7 +111,8 @@ export default function Channel(){
                             <div key={index}>
                <video src={video.video_path}
                controls  height={"150px"} width={"300px"}></video>
-               <h3> Title- {video.video_title}</h3>
+               <span> Title- {video.video_title} &nbsp; </span>
+               <button type="submit" className=" bg-red-400 rounded-xl hover:cursor-pointer " onClick={()=>handleVideoDelete(video.video_path)}>Delete</button>
                </div>
                )
             })}

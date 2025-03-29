@@ -14,6 +14,7 @@ import cameron from "../../assets/cameron.png"
 import Mycontext from "../../utils/Mycontext"
 import { useContext } from "react"
 import user from "../../assets/user.jpeg"
+import { Link } from "react-router-dom"
 
 function Sidebar(){
     const {value,theme}=useContext(Mycontext)
@@ -21,7 +22,7 @@ function Sidebar(){
         <div className={`sidebar ${value ? "":"small-sidebar"} ${theme}` }>
             <div className="shortcut-links">
                 <div className="side-link">
-                    <img src={home} alt="" /><p>Home</p>
+                    <img src={home} alt="" /><p><Link to="/">Home</Link> </p>
                 </div>
                 <div className="side-link">
                     <img src={game_icon} alt="" /><p>Gaming</p>
