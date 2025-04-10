@@ -38,40 +38,40 @@ function Register(){
     },[password])
 
 
-    // function handlesubmit(){
-    //         if(((!nameflag) && (!emailFlag) && (!pswdflag))){
-    //             alert("invalid details")
-    //             return;
-    //         }
+    function handlesubmit(){
+            if(((!nameflag) && (!emailFlag) && (!pswdflag))){
+                alert("invalid details")
+                return;
+            }
 
-    //         const datasubmit=async () => {
-    //         const result=await axios.post('https://youtube-clone-backend-8y7h.onrender.com/register',
-    //             {name,email:email.toUpperCase(),password:hash},{headers:{"Content-Type":"application/json"}, withCredentials:true})
-    //         if(!result.data)
-    //         {
-    //             console.log("error");
-    //             return
-    //          }
-    //          if(result.data==="User exists")
-    //          {
-    //             alert("User already registered.Please login");
-    //             return
-    //          }
-    //          if(result.data==="success"){
-    //                 setLogin(true);
-    //                 window.localStorage.setItem("User",email)
-    //                 // const newUserName=window.localStorage.getItem("User",email)
-    //                 window.localStorage.setItem('LoggedIn',true)
-    //                 setUser(name)
-    //                 navigate('/')                
-    //          } 
-    //          else if(result.data==="fail")
-    //             {
-    //                 navigate('/register')
-    //             }              
-    //     }
-    //     datasubmit();
-    // }
+            const datasubmit=async () => {
+            const result=await axios.post('https://youtube-clone-backend-8y7h.onrender.com/register',
+                {name,email:email.toUpperCase(),password:hash},{headers:{"Content-Type":"application/json"}, withCredentials:true})
+            if(!result.data)
+            {
+                console.log("error");
+                return
+             }
+             if(result.data==="User exists")
+             {
+                alert("User already registered.Please login");
+                return
+             }
+             if(result.data==="success"){
+                    setLogin(true);
+                    window.localStorage.setItem("User",email)
+                    // const newUserName=window.localStorage.getItem("User",email)
+                    window.localStorage.setItem('LoggedIn',true)
+                    setUser(name)
+                    navigate('/')                
+             } 
+             else if(result.data==="fail")
+                {
+                    navigate('/register')
+                }              
+        }
+        datasubmit();
+    }
 
     function handleName(e){
         const regex=/^[a-zA-Z0-9]{10}$/
