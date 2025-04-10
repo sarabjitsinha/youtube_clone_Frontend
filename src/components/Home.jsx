@@ -47,10 +47,10 @@ function Home(){
             
             {videodata.map((video)=>{
                 return(
-                    <div key={video.title} className="flex flex-col h-32 sm:mb-10 sm:h-52 md:h-72 md:mb-3 xl:h-72"  >
+                    <div key={video.title} className="flex flex-col h-36 sm:mb-10 sm:h-52 md:h-72 md:mb-3 xl:h-72"  >
                     <div className="flex">
                      <img src={video.thumb} alt="thumb" 
-                      className={`thumbs ${value? "w-40 h-18 sm:w-54 sm:h-42 md:w-60 md:h-48 lg:w-72 xl:w-86 xl:h-52"
+                      className={`thumbs ${value? "w-44 h-20 sm:w-54 sm:h-42 md:w-60 md:h-48 lg:w-72 xl:w-86 xl:h-52"
                         :"w-48 h-20 sm:w-60 sm:h-40 md:w-72 md:h-48 xl:w-96 xl:m-2 xl:h-52"}`}
                        onClick={()=>handlevid(video.id)} />   
                              </div>

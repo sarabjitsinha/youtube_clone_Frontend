@@ -10,12 +10,11 @@ import { useContext } from "react"
 import { useNavigate } from "react-router-dom"
 
 export default function Channel(){
-    const {videoAdd,chnlName,setchnlName}=useContext(Mycontext)
+    const {videoAdd,chnlName,setchnlName,userChannelCreate}=useContext(Mycontext)
     const [uservideo,setuservideo]=useState([])
     const [channelFlag,setchannelFlag]=useState(false)
     const loginCheck=window.localStorage.getItem('LoggedIn')
     const [vidbarshow,setvidbarshow]=useState(false)
-    const [promisecheck,setpromisecheck]=useState(true)
     const navigate=useNavigate()
 
     async function channelVideo(){
@@ -25,7 +24,7 @@ export default function Channel(){
         )
         
         if(!chnlName){
-            setpromisecheck(false)
+            setchannelFlag(false)
         }
         setuservideo(resp.data)
         
@@ -34,7 +33,7 @@ export default function Channel(){
         }
         else if(chnlName){
             setchannelFlag(true)
-            setpromisecheck(true)
+        
         }
     }
     
@@ -51,6 +50,8 @@ export default function Channel(){
      channelVideo();
      getChannelName();
     },[videoAdd])
+
+    useEffect(()=>{},[userChannelCreate])
 
     async function handleVideoDelete(target) {
         const resp=await axios.delete("http://127.0.0.1:3000/delete",{
@@ -75,10 +76,10 @@ export default function Channel(){
             
         <div className=" flex justify-between">
             <div className=" flex flex-col">
-                
+                <span>{channelFlag  ? `Your channel ->${chnlName ? chnlName:"Loading..."}`:""}</span>
             <Typography variant="subtitle1" >
            <Link to='/createchannel'  >
-           {channelFlag  ? `Your channel ->${chnlName ? chnlName:"Loading..."}`:`${promisecheck ?"Loading":"Create Channel"}`}</Link>
+           {`${userChannelCreate ? "":"Create Channel"}`}</Link>
             </Typography>
             
             <div onClick={()=>setvidbarshow(true)} className=" cursor-pointer" > 
