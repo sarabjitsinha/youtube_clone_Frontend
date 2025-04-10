@@ -172,7 +172,7 @@ function Register(){
         <Button variant="contained" color="primary" size="small" onClick={(e)=>handlesubmit(e)}>Register</Button>
         <br />
         <Typography variant="subtitle1">Already Registered?
-            <Link to='/signin' className=" text-blue-400 underline">Sign In</Link></Typography>
+            <Link to='/signin' className=" text-blue-900 underline">Sign In</Link></Typography>
         </Paper>
         </Grid2>
     )

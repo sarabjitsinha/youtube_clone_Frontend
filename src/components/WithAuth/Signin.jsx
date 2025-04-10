@@ -113,7 +113,7 @@ userValid();
           <br /><br />
           <Typography variant="subtitle1">
             {"Don't have an account? Sign up"}
-            <Link to="/register" className=" text-blue-400 underline">Click here</Link>
+            <Link to="/register" className=" text-blue-900 underline">Click here</Link>
           </Typography>
         </Paper>
       </Grid2>
