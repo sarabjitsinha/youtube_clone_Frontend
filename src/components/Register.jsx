@@ -1,14 +1,13 @@
-import { Typography,Button,Grid2,Paper,Link,Avatar,TextField } from "@mui/material";
+import { Typography,Button,Grid2,Paper,Avatar,TextField } from "@mui/material";
 import "../App.css"
 import { blue,purple } from "@mui/material/colors";
 import HowToRegIcon from '@mui/icons-material/HowToReg';
-import { useState } from "react";
+import { useState,useEffect,useContext } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 import Mycontext from "../utils/Mycontext.js"
-import { useContext } from "react";
 import bcrypt from "bcryptjs"
-import { useEffect } from "react";
+
 
 
 function Register(){
@@ -173,7 +172,7 @@ function Register(){
         <Button variant="contained" color="primary" size="small" onClick={(e)=>handlesubmit(e)}>Register</Button>
         <br />
         <Typography variant="subtitle1">Already Registered?
-            <Link href='/signin'>Sign In</Link></Typography>
+            <Link to='/signin' className=" text-blue-400 underline">Sign In</Link></Typography>
         </Paper>
         </Grid2>
     )
