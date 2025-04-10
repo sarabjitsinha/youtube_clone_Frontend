@@ -19,7 +19,7 @@ export default function Channel(){
 
     async function channelVideo(){
         setchnlName("")
-        const resp= await axios.get('http://127.0.0.1:3000/channelvideo',
+        const resp= await axios.get('https://youtube-clone-backend-8y7h.onrender.com/channelvideo',
             {headers:{'x-username':window.localStorage.getItem("User")},withCredentials:true}
         )
         
@@ -38,7 +38,7 @@ export default function Channel(){
     }
     
     async function getChannelName() {
-        const resp=await axios.get("http://127.0.0.1:3000/channelname",{headers:{"x-username":window.localStorage.getItem("User")},withCredentials:true})
+        const resp=await axios.get("https://youtube-clone-backend-8y7h.onrender.com/channelname",{headers:{"x-username":window.localStorage.getItem("User")},withCredentials:true})
         if(resp.data)
         setchnlName(resp.data)
         else
