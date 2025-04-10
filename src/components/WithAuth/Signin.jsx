@@ -3,14 +3,14 @@ import {
   Paper,
   Typography,
   Button,
-  Link,
+  // Link,
   TextField,
   Avatar,
   
 } from "@mui/material";
 import "../../App.css"
 import LockOpenRoundedIcon from "@mui/icons-material/LockOpenRounded";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 import axios from "axios";
 import {useEffect, useState } from "react";
 import Mycontext from "../../utils/Mycontext.js"
@@ -114,7 +114,7 @@ userValid();
           <br /><br />
           <Typography variant="subtitle1">
             {"Don't have an account? Sign up"}
-            <Link href="/register">Click here</Link>
+            <Link to="/register">Click here</Link>
           </Typography>
         </Paper>
       </Grid2>
