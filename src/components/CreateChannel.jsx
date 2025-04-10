@@ -11,7 +11,7 @@ function CreateChannel(){
     const userEmail=window.localStorage.getItem("User")
 
    async function handleChannel(){
-        const resp= await axios.post('http://127.0.0.1:3000/addchannel',
+        const resp= await axios.post('https://youtube-clone-backend-8y7h.onrender.com/addchannel',
             {username:userEmail,channelname:channelCreate},{withCredentials:true})
             if(resp.data=="success")
             {

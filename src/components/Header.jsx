@@ -56,7 +56,7 @@ function Header(){
 
         function handleChannel(){
             async function channelData(){
-                const resp=await axios.get('http://127.0.0.1:3000/channel',
+                const resp=await axios.get('https://youtube-clone-backend-8y7h.onrender.com/channel',
                     {withCredentials: true})
 
                     if(resp.data=="unauthorized token"){

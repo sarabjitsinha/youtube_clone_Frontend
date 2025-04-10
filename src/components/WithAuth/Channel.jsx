@@ -54,7 +54,7 @@ export default function Channel(){
     useEffect(()=>{},[userChannelCreate])
 
     async function handleVideoDelete(target) {
-        const resp=await axios.delete("http://127.0.0.1:3000/delete",{
+        const resp=await axios.delete("https://youtube-clone-backend-8y7h.onrender.com/delete",{
             headers:{"x-username":window.localStorage.getItem("User"),"x-url":target}});
             console.log(resp)
             if(resp.data=="success")
