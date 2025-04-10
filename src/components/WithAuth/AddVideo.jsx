@@ -19,7 +19,7 @@ function handlefile(e){
 async function handleSubmit(e){
     e.preventDefault();
     try {
-    const resp=await axios.post("http://127.0.0.1:3000/upload",{file,title,category,username:window.localStorage.getItem('User')},{
+    const resp=await axios.post("https://youtube-clone-backend-8y7h.onrender.com/upload",{file,title,category,username:window.localStorage.getItem('User')},{
         headers:{
             'Content-Type':'multipart/form-data',
             'x-username': window.localStorage.getItem('User')
