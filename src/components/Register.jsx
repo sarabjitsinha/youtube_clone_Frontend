@@ -46,7 +46,7 @@ function Register(){
 
             const datasubmit=async () => {
 
-            const result=await axios.post('https://youtube-clone-backend-omega.vercel.app:3000/register',{name,email:email.toUpperCase(),password:hash})
+            const result=await axios.post('http://127.0.0.1:3000/register',{name,email:email.toUpperCase(),password:hash})
             if(!result.data)
             {
                 console.log("error");
