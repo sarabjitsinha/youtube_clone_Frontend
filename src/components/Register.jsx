@@ -45,9 +45,8 @@ function Register(){
             }
 
             const datasubmit=async () => {
-
             const result=await axios.post('https://youtube-clone-backend-8y7h.onrender.com/register',
-                {name,email:email.toUpperCase(),password:hash},{headers:{"Content-Type":"application/json"}})
+                {name,email:email.toUpperCase(),password:hash},{headers:{"Content-Type":"application/json"}, withCredentials:true})
             if(!result.data)
             {
                 console.log("error");
